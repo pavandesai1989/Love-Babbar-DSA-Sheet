@@ -1,0 +1,35 @@
+void BTFromLevelOrder(BTNode*& root)
+{
+    queue<BTNode*> q;
+    cout<<"enter root data: "<<endl;
+    int rootdata;
+    cin>>rootdata;
+    
+    root = new BTNode(rootdata);
+    q.push(root);
+    
+    while(!q.empty())
+    {
+        BTNode* temp = q.front();
+        q.pop();
+        cout<<"enter the left child of "<<temp->data<<endl;
+        int leftdata;
+        cin>>leftdata;
+        
+        if(leftdata != -1)
+        {
+            temp->left = new BTNode(leftdata);
+            q.push(temp->left);
+        }
+        
+        cout<<"enter the right child of "<<temp->data<<endl;
+        int rightdata;
+        cin>>rightdata;
+        
+        if(rightdata != -1)
+        {
+            temp->right = new BTNode(rightdata);
+            q.push(temp->right);
+        }
+    }
+}
