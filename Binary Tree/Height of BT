@@ -1,0 +1,10 @@
+int HeightofBT(BTNode* root)
+{
+    if( root == NULL)
+        return 0;
+    
+    int leftHt = HeightofBT(root->left);
+    int rightHt = HeightofBT(root->right);
+    
+    return max(leftHt,rightHt) + 1;
+}
