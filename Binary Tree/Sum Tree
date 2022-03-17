@@ -1,0 +1,41 @@
+pair<bool,int> IsSumTree_Util(BTNode* root)
+{
+    if(root == NULL)
+    {
+        pair<bool,int> p = make_pair(true,0);
+        return p;
+    }
+    
+    //leaf node
+    if(root->left == NULL && root->right == NULL)
+    {
+        pair<bool,int> p = make_pair(true,root->data); ///imp
+        return p;
+    }
+    
+    pair<bool,int> left = IsSumTree_Util(root->left);
+    pair<bool,int> right = IsSumTree_Util(root->right);
+    
+    bool IsLeftSumTree = left.first;
+    bool IsRightSumTree = right.first;
+    bool cond = (root->data == left.second + right.second);
+    
+    pair<bool,int> ans;
+    if(IsLeftSumTree && IsRightSumTree && cond)
+    {
+        ans.first = true;
+        ans.second = root->data + left.second + right.second;
+    }
+    else
+    {
+        ans.first = false;
+    }
+    
+    return ans;
+    
+}
+
+bool IsSumTree(BTNode* root)
+{
+    return IsSumTree_Util(root).first;
+}
