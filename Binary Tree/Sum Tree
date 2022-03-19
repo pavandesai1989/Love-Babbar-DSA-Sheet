@@ -37,5 +37,5 @@ pair<bool,int> IsSumTree_Util(BTNode* root)
 
 bool IsSumTree(BTNode* root)
 {
-    return IsSumTree_Util(root).first;
+    return IsSumTree_Util(root).first; 
 }
