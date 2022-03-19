@@ -1,0 +1,87 @@
+/*
+  Print the boundary nodes.
+  print the left tree nodes except the leaf nodes. 
+  print the leaf nodes of both left and right
+  print the right tree nodes in reverse order. first call method and while returning store the data
+
+*/
+
+
+
+class Solution {
+public:
+
+void printleft(Node* root,vector<int> &ans)
+{
+    if(root == NULL)
+       return;
+    //do not print the leaf nodes
+    if(root->left == NULL && root->right == NULL)
+       return;
+    
+    //else strore the node
+    ans.push_back(root->data);
+    
+    if(root->left)
+       printleft(root->left,ans);
+    else
+       printleft(root->right,ans); //if left exists do not call on right part
+}
+
+void printleafnodes(Node* root,vector<int> &ans)
+{
+    if(!root)
+      return;
+    
+    if(root->left == NULL && root->right == NULL) //store the leaf node
+     {
+        ans.push_back(root->data);
+        return;
+     }
+     
+    //call on left and right
+    printleafnodes(root->left,ans);
+    printleafnodes(root->right,ans);
+}
+
+void printright(Node* root,vector<int> &ans)
+{
+    if(!root)
+      return;
+      
+    if(root->left == NULL && root->right == NULL)
+      return;
+    
+    //on coming back we must print the data
+    if(root->right)
+      printright(root->right,ans);
+    else
+      printright(root->left,ans);
+      
+    //store the node
+    ans.push_back(root->data);
+}
+
+    
+    vector <int> boundary(Node *root)
+    {
+        vector<int> ans;
+        if(!root)
+           return ans;
+        
+        //print the root data
+        ans.push_back(root->data);
+        
+        //print left part
+        printleft(root->left,ans);
+        
+        //print leaf nodes of both left and right sub tree
+        printleafnodes(root->left,ans);
+        printleafnodes(root->right,ans);
+        
+        //print the right side in reverse order
+        printright(root->right,ans);
+        
+        return ans;
+    }
+};
