@@ -25,5 +25,5 @@ pair<int,int> diameterBT_util(BTNode* root)
 
 int diameterofBT(BTNode* root)
 {
-    return diameterBT_util(root).first;
+    return diameterBT_util(root).first; 
 }
