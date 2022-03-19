@@ -54,7 +54,7 @@ BTNode* CreateBT(BTNode* root)
 int main()
 {
     BTNode* root = NULL;
-    root = CreateBT(root);//1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+    root = CreateBT(root);//1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1 
     
     //PrintLevelOrder(root);   //1 3 5 7 11 17
     
