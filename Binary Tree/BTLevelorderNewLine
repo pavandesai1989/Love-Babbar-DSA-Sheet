@@ -23,7 +23,7 @@ void PrintLevelOrderLineByLine(BTNode* root)
             cout<<endl;
             if(!q.empty())
             {
-                q.push(NULL);
+                q.push(NULL); 
             }
         }
    }
