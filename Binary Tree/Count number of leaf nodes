@@ -6,5 +6,5 @@ int NoOfLeafNodes(BTNode* root)
     else if( root->left == NULL && root->right == NULL)
         return 1;
     else
-        return NoOfLeafNodes(root->left) + NoOfLeafNodes(root->right);
+        return NoOfLeafNodes(root->left) + NoOfLeafNodes(root->right); 
 }
