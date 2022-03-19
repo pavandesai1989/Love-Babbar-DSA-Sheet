@@ -29,7 +29,7 @@ void BTFromLevelOrder(BTNode*& root)
         if(rightdata != -1)
         {
             temp->right = new BTNode(rightdata);
-            q.push(temp->right);
+            q.push(temp->right); 
         }
     }
 }
