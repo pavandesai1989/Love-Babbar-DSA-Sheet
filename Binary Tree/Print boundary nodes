@@ -82,6 +82,6 @@ void printright(Node* root,vector<int> &ans)
         //print the right side in reverse order
         printright(root->right,ans);
         
-        return ans;
+        return ans; 
     }
 };
