@@ -8,3 +8,4 @@ int HeightofBT(BTNode* root)
     
     return max(leftHt,rightHt) + 1;
 }
+ 
