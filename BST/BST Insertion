@@ -1,0 +1,40 @@
+BTNode* InsertinBST(BTNode*& root,int d)
+{
+    //base
+    if(!root)
+    {
+        root = new BTNode(d);
+        return root;
+    }
+    
+    if(d < root->data)
+        root->left = InsertinBST(root->left, d);
+    
+    if(d > root->data)
+        root->right = InsertinBST(root->right, d);
+    
+    return root;
+}
+
+
+void takeinput(BTNode*& root)
+{
+    int data;
+    cin>>data;
+    
+    while(data!=-1)
+    {
+        root = InsertinBST(root,data);
+        cin>>data;
+    }
+}
+
+int main()
+{
+    BTNode* root = NULL;
+    cout<<"enter data"<<endl;
+    takeinput(root);
+    
+    PrintLevelOrderLineByLine(root);
+    
+}
