@@ -1,0 +1,12 @@
+// inorder traversal of BST is always sorted. So to get the min value get the left most node
+int minValue(Node* root) 
+{
+   if(root == NULL)
+      return -1;
+      
+   Node* temp = root;
+   while(temp && temp->left!=NULL)
+       temp = temp->left;
+    
+    return temp->data;   
+}
