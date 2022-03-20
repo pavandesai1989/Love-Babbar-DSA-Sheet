@@ -1,0 +1,67 @@
+// Function to delete a node from BST.
+
+
+int GetMinValue(Node* root)
+{
+    while(root && root->left!=NULL)
+        root = root->left;
+        
+    return root->data;    
+}
+
+Node *deleteNode(Node *root, int X)
+{
+   if(root == NULL)
+      return root;
+    
+    if(root->data == X)
+    {
+        //0 child case
+        if(root->left == NULL && root->right == NULL)
+        {
+            delete root;
+            return NULL;  //imp
+        }
+        
+        //1 child case only left 
+        if(root->left!=NULL && root->right==NULL)
+        {
+            Node*temp = root->left;
+            delete root;
+            return temp;
+        }
+        
+        //1 child case only right
+        if(root->right!=NULL && root->left==NULL)
+        {
+            Node*temp = root->right;
+            delete root;
+            return temp;
+        }
+        
+        //2 child case
+        if(root->left!=NULL && root->right!=NULL)
+        {
+            //get the min value from the right sub tree
+            int mini = GetMinValue(root->right);
+            
+            //replace root data with the mini value
+            root->data = mini;
+            
+            //call delete on the right sub tree again. Node to delete is mini
+            root->right = deleteNode(root->right,mini);
+            
+            return root;
+        }
+    }
+    else if( X < root->data)
+    {
+        root->left = deleteNode(root->left,X);
+        return root;
+    }
+    else
+    {
+        root->right = deleteNode(root->right,X);
+        return root;
+    }
+}
