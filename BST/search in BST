@@ -1,3 +1,5 @@
+
+//space o(height)
 bool search(struct Node* root, int x) 
 {
     //base case
@@ -11,4 +13,24 @@ bool search(struct Node* root, int x)
       return search(root->left,x); 
     else
        return search(root->right,x);
+}
+
+
+//optimised iterative 
+bool search(Node* root, int x) 
+{
+    Node* temp = root;
+    
+    while(temp!=NULL)
+    {
+        if(temp->data == x)
+          return true;
+        
+        if(x < temp->data)
+          temp = temp->left;
+        else
+           temp = temp->right;
+    }
+    
+    return false;
 }
