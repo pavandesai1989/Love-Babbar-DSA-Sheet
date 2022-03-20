@@ -1,0 +1,41 @@
+class Solution{
+    public:
+    
+    void createmapping(int in[],map<int,int> &inmap,int n)
+    {
+        for(int i=0;i<n;i++)
+        {
+            inmap[in[i]] = i;
+        }
+    }
+    
+    Node* buildTree_util(int in[],int pre[],map<int,int> &inmap,int &preidx, 
+                         int instart,int inend, int n)
+    {
+        //base 
+        if(preidx >= n || instart > inend)
+           return NULL;
+        
+        int element = pre[preidx++]; //get the 1st ele in the preorder traversal
+        //create a node
+        Node* root = new Node(element);
+        //locate this ele in the inorder to get left and right tree nodes
+        int pos = inmap[element];
+        
+        //call on left tree
+        root->left = buildTree_util(in,pre,inmap,preidx,instart,pos-1,n); //0 to pos-1
+        //call on right tree
+        root->right = buildTree_util(in,pre,inmap,preidx,pos+1,inend,n); //pos+1 to end 
+        
+        return root;
+    }
+    
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        int preidx = 0;
+        map<int,int> inmap;
+        createmapping(in,inmap,n);
+        
+        return buildTree_util(in,pre,inmap,preidx,0,n-1,n);
+    }
+};
