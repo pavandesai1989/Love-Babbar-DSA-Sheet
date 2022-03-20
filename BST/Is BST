@@ -1,0 +1,27 @@
+class Solution
+{
+    public:
+    //Function to check whether a Binary Tree is BST or not.
+    
+    bool checkifBST(Node* root,int min,int max)
+    {
+        if(!root)
+           return true;
+        
+        if(root->data >= min && root->data <= max)
+        {
+            bool left = checkifBST(root->left,min,root->data);
+            bool right = checkifBST(root->right,root->data,max);
+            
+            return left && right;
+        }   
+        
+        return false;
+    }
+    
+    
+    bool isBST(Node* root) 
+    {
+        return checkifBST(root,INT_MIN,INT_MAX);
+    }
+};
