@@ -1,0 +1,26 @@
+// inorder traversal of BST is always sorted. So to get the min value get the left most node
+
+
+class Solution
+{
+public:
+    int findMin(Node *root)
+    {
+        Node* temp = root;
+        
+        while(temp && temp->left)
+            temp = temp->left;
+        
+        return temp->data;    
+    }
+    
+    int findMax(Node *root)
+    {
+       Node* temp = root;
+       
+       while(temp && temp->right)
+          temp = temp->right;
+        
+        return temp->data;  
+    }
+};
