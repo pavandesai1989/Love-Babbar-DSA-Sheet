@@ -1,0 +1,38 @@
+//Function to return a tree created from postorder and inoreder traversals.
+   void createmapping(int in[],map<int,int> &inmap,int n)
+    {
+        for(int i=0;i<n;i++)
+        {
+            inmap[in[i]] = i;
+        }
+    }
+    
+    Node* buildTree_util(int in[],int post[],map<int,int> &inmap,int &postidx, 
+                         int instart,int inend, int n)
+    {
+        //base 
+        if(postidx < 0 || instart > inend)
+           return NULL;
+        
+        int element = post[postidx--]; //moving from the last to first index
+        //create a node
+        Node* root = new Node(element);
+        //locate this ele in the inorder to get left and right tree nodes
+        int pos = inmap[element];
+        
+        //note we build right first 
+        root->right = buildTree_util(in,post,inmap,postidx,pos+1,inend,n); //pos+1 to end 
+        root->left = buildTree_util(in,post,inmap,postidx,instart,pos-1,n); //0 to pos-1
+
+        
+        return root;
+    }
+    
+Node *buildTree(int in[], int post[], int n)
+{
+        int postidx = n-1; //start from the end idx
+        map<int,int> inmap;
+        createmapping(in,inmap,n);
+        
+        return buildTree_util(in,post,inmap,postidx,0,n-1,n);
+}
