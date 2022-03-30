@@ -1,0 +1,32 @@
+    vector<int> subarraySum(int arr[], int n, long long s)
+    {
+   vector<int> res;
+   int l=0,h=0;
+   int curr_sum = 0;
+   bool bfound = false;
+   
+   for(int l=0;l<n;l++)
+   {
+       while(curr_sum<s && h<n)
+       {
+           curr_sum = curr_sum + arr[h];
+           h++;
+       }
+       
+       if(curr_sum == s)
+       {
+           bfound = true;
+           res.push_back(l+1);
+           res.push_back(h);
+           
+           return res;
+       }
+       
+       curr_sum = curr_sum - arr[l];
+   }
+   
+   if(!bfound)
+     res.push_back(-1);
+   
+   return res;
+    }
